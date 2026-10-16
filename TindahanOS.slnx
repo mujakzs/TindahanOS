@@ -1,0 +1,23 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Application/">
+    <Project Path="TindahanOS.Application/TindahanOS.Application.csproj">
+      <BuildDependency Project="TindahanOS.Domain/TindahanOS.Domain.csproj" />
+    </Project>
+  </Folder>
+  <Folder Name="/src/Domain/">
+    <Project Path="TindahanOS.Domain/TindahanOS.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/Infrastructure/">
+    <Project Path="TindahanOS.Infrastructure/TindahanOS.Infrastructure.csproj">
+      <BuildDependency Project="TindahanOS.Application/TindahanOS.Application.csproj" />
+      <BuildDependency Project="TindahanOS.Domain/TindahanOS.Domain.csproj" />
+    </Project>
+  </Folder>
+  <Folder Name="/src/Presentation/">
+    <Project Path="TindahanOS.API/TindahanOS.API.csproj">
+      <BuildDependency Project="TindahanOS.Application/TindahanOS.Application.csproj" />
+      <BuildDependency Project="TindahanOS.Infrastructure/TindahanOS.Infrastructure.csproj" />
+    </Project>
+  </Folder>
+</Solution>
