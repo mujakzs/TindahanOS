@@ -20,6 +20,7 @@ public class ApplicationDBContext : DbContext
     public DbSet<Customer> Customers => Set<Customer>();
     public DbSet<Product> Products => Set<Product>();
     public DbSet<DebtAccount> DebtAccounts => Set<DebtAccount>();
+    public DbSet<DebtTransaction> DebtTransactions => Set<DebtTransaction>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
