@@ -1,4 +1,5 @@
-﻿using TindahanOS.Infrastructure.Persistence.Entities.Stores;
+﻿using TindahanOS.Infrastructure.Persistence.Entities.Customers;
+using TindahanOS.Infrastructure.Persistence.Entities.Stores;
 
 namespace TindahanOS.Infrastructure.Persistence.Entities.Stores;
 
@@ -15,4 +16,6 @@ public class Store : BaseAuditEntity
     public int Status { get; set; } = 1;
 
     public ICollection<StoreMembership> StoreMemberships { get; set; } = new List<StoreMembership>();
+
+    public ICollection<Customer> Customers { get; set; } = new List<Customer>();
 }

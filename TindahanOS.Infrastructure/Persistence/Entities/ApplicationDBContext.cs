@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TindahanOS.Infrastructure.Persistence.Entities.Customers;
 using TindahanOS.Infrastructure.Persistence.Entities.Stores;
 using TindahanOS.Infrastructure.Persistence.Entities.Users;
 
@@ -13,8 +14,8 @@ public class ApplicationDBContext : DbContext
 
     public DbSet<User> Users => Set<User>();
     public DbSet<Store> Stores => Set<Store>();
-
-
+    public DbSet<StoreMembership> StoreMemberships => Set<StoreMembership>();
+    public DbSet<Customer> Customers => Set<Customer>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
