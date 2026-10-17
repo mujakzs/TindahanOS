@@ -22,6 +22,8 @@ public class ApplicationDBContext : DbContext
     public DbSet<DebtAccount> DebtAccounts => Set<DebtAccount>();
     public DbSet<DebtTransaction> DebtTransactions => Set<DebtTransaction>();
 
+    public DbSet<DebtTransactionItem> DebtTransactionItem => Set<DebtTransactionItem>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

@@ -15,4 +15,6 @@ public class DebtTransaction : BaseAuditEntity
     public string? ReferenceNumber { get; set; }
 
     public string? Notes { get; set; }
+
+    public ICollection<DebtTransactionItem> Items { get; set; } = new List<DebtTransactionItem>();
 }
