@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TindahanOS.Infrastructure.Persistence.Entities.Customers;
-using TindahanOS.Infrastructure.Persistence.Entities.Debts;
-using TindahanOS.Infrastructure.Persistence.Entities.Products;
-using TindahanOS.Infrastructure.Persistence.Entities.Stores;
-using TindahanOS.Infrastructure.Persistence.Entities.Users;
+
 
 namespace TindahanOS.Infrastructure.Persistence.Entities;
 
@@ -21,7 +17,6 @@ public class ApplicationDBContext : DbContext
     public DbSet<Product> Products => Set<Product>();
     public DbSet<DebtAccount> DebtAccounts => Set<DebtAccount>();
     public DbSet<DebtTransaction> DebtTransactions => Set<DebtTransaction>();
-
     public DbSet<DebtTransactionItem> DebtTransactionItem => Set<DebtTransactionItem>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

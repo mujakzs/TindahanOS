@@ -1,7 +1,4 @@
-﻿using TindahanOS.Infrastructure.Persistence.Entities.Customers;
-using TindahanOS.Infrastructure.Persistence.Entities.Stores;
-
-namespace TindahanOS.Infrastructure.Persistence.Entities.Debts;
+﻿namespace TindahanOS.Infrastructure.Persistence.Entities;
 
 public class DebtAccount : BaseAuditEntity
 {

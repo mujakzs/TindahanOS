@@ -1,6 +1,4 @@
-﻿using TindahanOS.Infrastructure.Persistence.Entities.Products;
-
-namespace TindahanOS.Infrastructure.Persistence.Entities.Debts;
+﻿namespace TindahanOS.Infrastructure.Persistence.Entities;
 
 public class DebtTransactionItem : BaseAuditEntity
 {

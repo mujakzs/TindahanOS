@@ -1,6 +1,4 @@
-﻿using TindahanOS.Infrastructure.Persistence.Entities.Stores;
-
-namespace TindahanOS.Infrastructure.Persistence.Entities.Customers;
+﻿namespace TindahanOS.Infrastructure.Persistence.Entities;
 
 public class Customer : BaseAuditEntity
 {
