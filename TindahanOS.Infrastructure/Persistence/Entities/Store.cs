@@ -1,5 +1,4 @@
-﻿using TindahanOS.Infrastructure.Persistence.Entities.Customers;
-using TindahanOS.Infrastructure.Persistence.Entities.Products;
+﻿
 
 namespace TindahanOS.Infrastructure.Persistence.Entities;
 
@@ -20,4 +19,7 @@ public class Store : BaseAuditEntity
     public ICollection<Customer> Customers { get; set; } = new List<Customer>();
 
     public ICollection<Product> Products { get; set; } = new List<Product>();
+
+    public ICollection<GCashTransaction> GCashTransactions { get; set; } = new List<GCashTransaction>();
+
 }

@@ -1,5 +1,4 @@
-﻿using TindahanOS.Infrastructure.Persistence.Entities.Users;
-
+﻿
 namespace TindahanOS.Infrastructure.Persistence.Entities;
 
 public class StoreMembership : BaseAuditEntity

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-
 namespace TindahanOS.Infrastructure.Persistence.Entities;
 
 public class ApplicationDBContext : DbContext
@@ -18,7 +17,7 @@ public class ApplicationDBContext : DbContext
     public DbSet<DebtAccount> DebtAccounts => Set<DebtAccount>();
     public DbSet<DebtTransaction> DebtTransactions => Set<DebtTransaction>();
     public DbSet<DebtTransactionItem> DebtTransactionItem => Set<DebtTransactionItem>();
-
+    public DbSet<GCashTransaction> GCashTransactions => Set<GCashTransaction>();
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
