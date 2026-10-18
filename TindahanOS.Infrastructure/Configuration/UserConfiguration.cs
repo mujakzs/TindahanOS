@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TindahanOS.Infrastructure.Persistence.Entities.Users;
+using TindahanOS.Infrastructure.Persistence.Entities;
 
 namespace TindahanOS.Infrastructure.Configuration;
 

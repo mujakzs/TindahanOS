@@ -1,6 +1,6 @@
 ﻿using TindahanOS.Domain.DomainEntities;
 using TindahanOS.Domain.Enums;
-using TindahanOS.Infrastructure.Persistence.Entities.Debts;
+using TindahanOS.Infrastructure.Persistence.Entities;
 
 namespace TindahanOS.Infrastructure.Mappings;
 

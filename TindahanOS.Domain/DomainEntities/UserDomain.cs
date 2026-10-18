@@ -1,6 +1,7 @@
 ﻿
 
-using TindahanOS.Infrastructure.Persistence.Entities.Users;
+
+using TindahanOS.Domain.Enums;
 
 namespace TindahanOS.Domain.DomainEntities;
 

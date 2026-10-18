@@ -18,6 +18,9 @@ public class ApplicationDBContext : DbContext
     public DbSet<DebtTransaction> DebtTransactions => Set<DebtTransaction>();
     public DbSet<DebtTransactionItem> DebtTransactionItem => Set<DebtTransactionItem>();
     public DbSet<GCashTransaction> GCashTransactions => Set<GCashTransaction>();
+    public DbSet<GCashTransactionReview> GcashTransactionReviews => Set<GCashTransactionReview>();
+
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

@@ -22,4 +22,6 @@ public class GCashTransaction : BaseAuditEntity
 
     public DateTime TransactionDate { get; set; } = DateTime.UtcNow;
 
+    public ICollection<GCashTransactionReview> Reviews { get; set; } = new List<GCashTransactionReview>();
+
 }

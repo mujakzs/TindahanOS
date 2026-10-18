@@ -1,4 +1,4 @@
-﻿namespace TindahanOS.Infrastructure.Persistence.Entities.Users;
+﻿namespace TindahanOS.Domain.Enums;
 
 public enum UserStatus
 {
