@@ -32,6 +32,9 @@ public class StoreConfiguration : IEntityTypeConfiguration<Store>
             .HasDefaultValue(1)
             .IsRequired();
 
+        // Constrain allowed status values
+        builder.HasCheckConstraint("CK_Stores_Status_Valid", "[Status] IN (1,2,3)");
+
         builder.Property(x => x.CreatedAt)
             .IsRequired();
 

@@ -9,7 +9,24 @@ public class ProductConfiguration
 {
     public void Configure(EntityTypeBuilder<Product> builder)
     {
-        builder.ToTable("Products");
+        builder.ToTable("Products", table =>
+        {
+            table.HasCheckConstraint(
+                "CK_Products_Unit_Valid",
+                "[Unit] IN (1,2,3,4,5,6,7,8,9,10)");
+
+            table.HasCheckConstraint(
+                "CK_Products_Status_Valid",
+                "[Status] IN (1,2)");
+
+            table.HasCheckConstraint(
+                "CK_Products_SellingPrice_NonNegative",
+                "[SellingPrice] >= 0");
+
+            table.HasCheckConstraint(
+                "CK_Products_CostPrice_NonNegative",
+                "[CostPrice] IS NULL OR [CostPrice] >= 0");
+        });
 
         // Primary key
         builder.HasKey(x => x.Id);
@@ -22,6 +39,9 @@ public class ProductConfiguration
             .WithMany(x => x.Products)
             .HasForeignKey(x => x.StoreId)
             .OnDelete(DeleteBehavior.NoAction);
+
+        // Allow referencing by (StoreId, Id) to enforce tenant ownership from dependents
+        builder.HasAlternateKey(x => new { x.StoreId, x.Id });
 
         // Product information
         builder.Property(x => x.Name)

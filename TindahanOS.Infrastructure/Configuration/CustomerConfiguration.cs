@@ -13,6 +13,9 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
         // Primary key
         builder.HasKey(x => x.Id);
 
+        // Ensure (StoreId, Id) can be referenced as a principal key to enforce tenant ownership from dependents
+        builder.HasAlternateKey(x => new { x.StoreId, x.Id });
+
         // Store relationship
         builder.Property(x => x.StoreId)
             .IsRequired();
@@ -43,6 +46,9 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
         builder.Property(x => x.Status)
             .HasDefaultValue(1)
             .IsRequired();
+
+        // Constrain allowed enum values at the database level
+        builder.HasCheckConstraint("CK_Customers_Status_Valid", "[Status] IN (1, 2)");
 
         // Query indexes
         builder.HasIndex(x => x.StoreId);

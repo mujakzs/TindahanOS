@@ -2,6 +2,7 @@
 
 public class DebtTransactionItem : BaseAuditEntity
 {
+    public Guid StoreId { get; set; }
     public Guid DebtTransactionId { get; set; }
 
     public DebtTransaction DebtTransaction { get; set; } = null!;

@@ -13,6 +13,9 @@ public class DebtAccountConfiguration
 
         builder.HasKey(x => x.Id);
 
+        // Allow other entities to reference (StoreId, Id)
+        builder.HasAlternateKey(x => new { x.StoreId, x.Id });
+
         builder.Property(x => x.StoreId)
             .IsRequired();
 
@@ -42,9 +45,11 @@ public class DebtAccountConfiguration
             .HasForeignKey(x => x.StoreId)
             .OnDelete(DeleteBehavior.NoAction);
 
+        // Enforce that the referenced customer belongs to the same store by using a composite FK
         builder.HasOne(x => x.Customer)
             .WithMany()
-            .HasForeignKey(x => x.CustomerId)
+            .HasForeignKey(x => new { x.StoreId, x.CustomerId })
+            .HasPrincipalKey("StoreId", "Id")
             .OnDelete(DeleteBehavior.NoAction);
 
         builder.Property(x => x.CreatedAt)

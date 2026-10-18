@@ -9,17 +9,31 @@ public class DebtTransactionConfiguration
 {
     public void Configure(EntityTypeBuilder<DebtTransaction> builder)
     {
-        builder.ToTable("DebtTransactions");
+        builder.ToTable("DebtTransactions", table =>
+        {
+            table.HasCheckConstraint(
+                "CK_DebtTransactions_Amount_Positive",
+                "[Amount] > 0");
+        });
 
         builder.HasKey(x => x.Id);
+
+        // StoreId on DebtTransaction to enforce tenant ownership when referencing from items
+        builder.Property(x => x.StoreId)
+            .IsRequired();
+
+        // Allow other entities (items) to reference (StoreId, Id)
+        builder.HasAlternateKey(x => new { x.StoreId, x.Id });
 
         // Debt account relationship
         builder.Property(x => x.DebtAccountId)
             .IsRequired();
 
+        // Enforce that the referenced debt account belongs to the same store by using a composite FK
         builder.HasOne(x => x.DebtAccount)
             .WithMany()
-            .HasForeignKey(x => x.DebtAccountId)
+            .HasForeignKey(x => new { x.StoreId, x.DebtAccountId })
+            .HasPrincipalKey("StoreId", "Id")
             .OnDelete(DeleteBehavior.NoAction);
 
         // Transaction type
@@ -67,10 +81,6 @@ public class DebtTransactionConfiguration
         builder.Property(x => x.UpdatedBy)
             .IsRequired(false);
 
-        // Database-level check for positive amounts
-        builder.ToTable("DebtTransactions", table =>
-            table.HasCheckConstraint(
-                "CK_DebtTransactions_Amount_Positive",
-                "[Amount] > 0"));
+        // Database-level checks were consolidated into the initial ToTable call above.
     }
 }

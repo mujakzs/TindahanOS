@@ -27,6 +27,10 @@ public class StoreMembershipConfiguration
             .HasDefaultValue(1)
             .IsRequired();
 
+        // Constrain allowed role and status values
+        builder.HasCheckConstraint("CK_StoreMemberships_Role_Valid", "[Role] IN (1,2,3)");
+        builder.HasCheckConstraint("CK_StoreMemberships_Status_Valid", "[Status] IN (1,2)");
+
         builder.HasIndex(x => new { x.StoreId, x.UserId })
             .IsUnique();
 

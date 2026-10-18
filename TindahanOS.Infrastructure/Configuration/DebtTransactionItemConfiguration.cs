@@ -31,18 +31,25 @@ public class DebtTransactionItemConfiguration
         builder.Property(x => x.DebtTransactionId)
             .IsRequired();
 
+        builder.Property(x => x.StoreId)
+            .IsRequired();
+
+        // Enforce that the item references a transaction in the same store
         builder.HasOne(x => x.DebtTransaction)
             .WithMany(x => x.Items)
-            .HasForeignKey(x => x.DebtTransactionId)
+            .HasForeignKey(x => new { x.StoreId, x.DebtTransactionId })
+            .HasPrincipalKey("StoreId", "Id")
             .OnDelete(DeleteBehavior.NoAction);
 
         // Product relationship
         builder.Property(x => x.ProductId)
             .IsRequired();
 
+        // Enforce that the referenced product belongs to the same store
         builder.HasOne(x => x.Product)
             .WithMany()
-            .HasForeignKey(x => x.ProductId)
+            .HasForeignKey(x => new { x.StoreId, x.ProductId })
+            .HasPrincipalKey("StoreId", "Id")
             .OnDelete(DeleteBehavior.NoAction);
 
         // Quantity: supports fractional quantities
@@ -61,9 +68,9 @@ public class DebtTransactionItemConfiguration
             .IsRequired();
 
         // Query indexes
-        builder.HasIndex(x => x.DebtTransactionId);
+        builder.HasIndex(x => new { x.StoreId, x.DebtTransactionId });
 
-        builder.HasIndex(x => x.ProductId);
+        builder.HasIndex(x => new { x.StoreId, x.ProductId });
 
         // Audit fields
         builder.Property(x => x.CreatedAt)

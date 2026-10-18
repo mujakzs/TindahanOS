@@ -35,9 +35,11 @@ public class InventoryMovementConfiguration
         builder.Property(x => x.ProductId)
             .IsRequired();
 
+        // Enforce that the referenced product belongs to the same store by using a composite FK
         builder.HasOne(x => x.Product)
             .WithMany(x => x.InventoryMovements)
-            .HasForeignKey(x => x.ProductId)
+            .HasForeignKey(x => new { x.StoreId, x.ProductId })
+            .HasPrincipalKey("StoreId", "Id")
             .OnDelete(DeleteBehavior.NoAction);
 
         // Movement type
