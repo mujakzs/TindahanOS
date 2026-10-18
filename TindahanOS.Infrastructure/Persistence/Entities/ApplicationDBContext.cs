@@ -20,6 +20,8 @@ public class ApplicationDBContext : DbContext
     public DbSet<GCashTransaction> GCashTransactions => Set<GCashTransaction>();
     public DbSet<GCashTransactionReview> GcashTransactionReviews => Set<GCashTransactionReview>();
     public DbSet<InventoryMovement> InventoryMovements => Set<InventoryMovement>();
+    public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
+    public DbSet<StoreSetting> StoreSettings => Set<StoreSetting>();
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

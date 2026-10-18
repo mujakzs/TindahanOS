@@ -14,6 +14,8 @@ public class Store : BaseAuditEntity
 
     public int Status { get; set; } = 1;
 
+    public StoreSetting? Settings { get; set; }
+
     public ICollection<StoreMembership> StoreMemberships { get; set; } = new List<StoreMembership>();
 
     public ICollection<Customer> Customers { get; set; } = new List<Customer>();
