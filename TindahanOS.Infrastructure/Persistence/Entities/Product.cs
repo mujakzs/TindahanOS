@@ -20,4 +20,6 @@ public class Product : BaseAuditEntity
     public decimal? CostPrice { get; set; }
 
     public int Status { get; set; } = 1;
+
+    public ICollection<InventoryMovement> InventoryMovements { get; set; } = new List<InventoryMovement>();
 }

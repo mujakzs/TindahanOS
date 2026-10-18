@@ -22,4 +22,6 @@ public class Store : BaseAuditEntity
 
     public ICollection<GCashTransaction> GCashTransactions { get; set; } = new List<GCashTransaction>();
 
+    public ICollection<InventoryMovement> InventoryMovements { get; set; } = new List<InventoryMovement>();
+
 }
