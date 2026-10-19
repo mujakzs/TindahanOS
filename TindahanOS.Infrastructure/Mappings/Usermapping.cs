@@ -4,28 +4,28 @@ using TindahanOS.Infrastructure.Persistence.Entities;
 
 namespace TindahanOS.Infrastructure.Mappings;
 
-public static class UserMapping
+public class UserMapping : IEntityMapper<UserDomain, User>
 {
     // ToDomain() converts the database entity into a business entity.
-    public static UserDomain ToDomain(this User user)
+    public UserDomain ToDomain(User entity)
     {
         return new UserDomain
         {
-            Id = user.Id,
-            Username = user.Username,
-            FullName = user.FullName,
-            Email = user.Email,
-            PasswordHash = user.PasswordHash,
-            PhoneNumber = user.PhoneNumber,
-            Status = Enum.IsDefined(typeof(UserStatus), user.Status)
-                ? (UserStatus)user.Status
+            Id = entity.Id,
+            Username = entity.Username,
+            FullName = entity.FullName,
+            Email = entity.Email,
+            PasswordHash = entity.PasswordHash,
+            PhoneNumber = entity.PhoneNumber,
+            Status = Enum.IsDefined(typeof(UserStatus), entity.Status)
+                ? (UserStatus)entity.Status
                 : throw new InvalidOperationException(
-                    $"Invalid user status value: {user.Status}")
+                    $"Invalid user status value: {entity.Status}")
         };
     }
 
     // ToEntity() converts the business entity into a persistence entity.
-    public static User ToEntity(this UserDomain domain)
+    public User ToEntity(UserDomain domain)
     {
         return new User
         {
@@ -37,5 +37,15 @@ public static class UserMapping
             PhoneNumber = domain.PhoneNumber,
             Status = (int)domain.Status
         };
+    }
+
+    public void UpdateEntity(UserDomain domain, User entity)
+    {
+        entity.Username = domain.Username;
+        entity.FullName = domain.FullName;
+        entity.Email = domain.Email;
+        entity.PasswordHash = domain.PasswordHash;
+        entity.PhoneNumber = domain.PhoneNumber;
+        entity.Status = (int)domain.Status;
     }
 }
