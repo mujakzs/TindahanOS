@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TindahanOS.Infrastructure.Extension;
 using TindahanOS.Infrastructure.Persistence.Entities;
 
 public class UserConfiguration : IEntityTypeConfiguration<User>
@@ -23,11 +24,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(x => x.PasswordHash).HasMaxLength(500).IsRequired();
         builder.Property(x => x.PhoneNumber).HasMaxLength(20);
 
-        builder.Property(x => x.Status).IsRequired();  
+        builder.Property(x => x.Status).IsRequired();
 
-        builder.Property(x => x.CreatedAt).IsRequired();
-        builder.Property(x => x.CreatedBy).IsRequired(); 
-        builder.Property(x => x.UpdatedAt);
-        builder.Property(x => x.UpdatedBy);
+        builder.ConfigureAudit();
     }
 }
