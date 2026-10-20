@@ -707,7 +707,6 @@ namespace TindahanOS.Infrastructure.Migrations
             modelBuilder.Entity("TindahanOS.Infrastructure.Persistence.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
@@ -737,9 +736,7 @@ namespace TindahanOS.Infrastructure.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(1);
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -755,12 +752,17 @@ namespace TindahanOS.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasDatabaseName("UX_Users_Email");
 
                     b.HasIndex("Username")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasDatabaseName("UX_Users_Username");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_Users_Status", "[Status] IN (1, 2)");
+                        });
                 });
 
             modelBuilder.Entity("TindahanOS.Infrastructure.Persistence.Entities.Customer", b =>
